@@ -1,0 +1,32 @@
+.root-main{
+
+}
+.state-btn{
+    background-color: #1746A2 !important;
+    color: #FFF7E9 !important;
+    
+}
+.state-btn:hover{
+    transition:ease-in-out 0.5s;
+    background-color: rgb(1, 36, 96) !important;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
