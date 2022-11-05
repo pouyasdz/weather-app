@@ -1,20 +1,18 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import List from "@mui/material/List";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import "../style/weather.css";
 import theme from "../theme";
-import { StateContext } from "../shared/context/states-context";
-
-function StatesList({ states }) {
+import {StateContext} from "../shared/context/states-context"
+function CityList({ City, stateCity }) {
+  const [stateItem, setStateItem] = useContext(StateContext);
   const [value, setValue] = React.useState({
     input: "",
-    fstate: [...states],
+    fCity: [...City],
   });
   const [visable, setVisable] = React.useState(false);
-  const [stateItem, setStateItem] = useContext(StateContext);
-
-  function SearchStates() {
-    const copyOfState = [...states];
+  function SearchCity() {
+    const copyOfState = [...City];
     const main = copyOfState.filter((item) => {
       if (value.input.includes([" ", ""])) return item;
       if (item.name.includes(value.input)) return item;
@@ -25,23 +23,23 @@ function StatesList({ states }) {
     setValue((prev) => ({ ...prev, input: e.target.value }));
   }
   function clicked(item){
-    setStateItem(item)
+    setStateItem({stateCity:stateCity, city:item.name})
     setValue((prev) => ({ ...prev, input: item.name }))
     setVisable(false)
   }
-
   React.useEffect(() => {
-    SearchStates();
-  }, [value.input, states]);
+    SearchCity();
+  }, [value.input, City]);
   return (
     <Box
+
       className="d-grid"
       sx={{ width: "100%", [theme.breakpoints.up("sm")]: { width: "50%", margin:"0 auto" } }}
     >
       <TextField
         dir="rtl"
         variant="outlined"
-        label="استان خود را انتخاب کنید"
+        label="شهر استان"
         focused
         fullWidth
         value={value.input}
@@ -70,7 +68,7 @@ function StatesList({ states }) {
               fontWeight={700}
               color="#FF731D"
             >
-              استان ها
+              شهر استان {City[0].name} 
             </Typography>
           }
         >
@@ -93,4 +91,4 @@ function StatesList({ states }) {
   );
 }
 
-export default StatesList;
+export default CityList;
